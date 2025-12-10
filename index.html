@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hashir Hassan | Portfolio</title>
+    <link rel="icon" type="image/png" href="images/favicon.png">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Inter:wght@300;400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.7.0/vanilla-tilt.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+
+<body>
+
+    <div id="preloader">
+        <div class="loader-content">
+            <div class="scanner"></div>
+            <div class="loader-text">Loading System...</div>
+            <div class="loader-bar">
+                <div class="loader-progress"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="theme-switch">
+        <div class="theme-btn" style="background:#38bdf8;" onclick="setTheme('#38bdf8', '#818cf8')"></div>
+        <div class="theme-btn" style="background:#22c55e;" onclick="setTheme('#22c55e', '#166534')"></div>
+        <div class="theme-btn" style="background:#f59e0b;" onclick="setTheme('#f59e0b', '#b45309')"></div>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <div id="progress-container">
+        <div id="progress-bar"></div>
+    </div>
+
+    <nav class="navbar">
+        <div class="logo">Hashir<span>.</span></div>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <div class="menu-btn">
+            <i class="fas fa-bars"></i>
+        </div>
+    </nav>
+
+    <section id="home" class="hero">
+        <div class="hero-container">
+
+            <div class="hero-text hidden">
+                <h3>Hello, I'm</h3>
+                <h1>Hashir Hassan</h1>
+                <h2 class="typing-text">I am a <span class="typewriter"></span></h2>
+                <p>Building modern, fast, and scalable web applications with a focus on premium UI/UX and data-driven
+                    solutions.</p>
+                <div class="hero-btns">
+                    <a href="#projects" class="btn primary-btn">View My Work</a>
+                    <a href="#contact" class="btn secondary-btn">Hire Me</a>
+                </div>
+                <div class="social-icons">
+                    <a href="https://linkedin.com/in/hashir-hassan157" target="_blank"><i
+                            class="fab fa-linkedin"></i></a>
+                    <a href="https://github.com" target="_blank"><i class="fab fa-github"></i></a>
+                    <a href="mailto:hashirhassan157@gmail.com"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+
+            <div class="hero-img hidden">
+                <div class="img-box">
+                    <img src="images/favicon.png" alt="Hashir Hassan">
+                </div>
+            </div>
+
+        </div>
+        <div class="hero-bg-decoration"></div>
+    </section>
+
+    <section id="about" class="section">
+        <div class="container hidden">
+            <h2 class="section-title">About Me</h2>
+
+            <div class="about-wrapper">
+
+                <div class="about-image-container">
+                    <img src="images/portfolio pic.png" alt="Hashir Hassan">
+                    <div class="img-border"></div>
+                </div>
+
+                <div class="about-card">
+                    <div class="about-text">
+                        <p>I am a passionate <strong>Web Developer</strong> and a <strong>BSCS Student</strong> at
+                            Government College University, Faisalabad (GCUF). My journey in tech is driven by a desire
+                            to innovate and solve complex problems through code.</p>
+                        <p>I specialize in full-stack concepts using <strong>PHP & MySQL</strong> while crafting
+                            stunning front-end experiences. Additionally, I am exploring <strong>Data Science</strong>
+                            to leverage data for smarter decision-making.</p>
+
+                        <div class="github-card" data-tilt>
+                            <div class="gh-content">
+                                <i class="fab fa-github"></i>
+                                <div class="gh-text">
+                                    <h4>GitHub Profile</h4>
+                                    <p>Check out my latest code & repositories.</p>
+                                </div>
+                            </div>
+                            <a href="https://github.com/hashirhassan157-max" target="_blank" class="gh-btn">
+                                View Code <i class="fas fa-arrow-right"></i>
+                            </a>
+                        </div>
+
+                        <div class="info-grid">
+                            <div class="info-item"><i class="fas fa-map-marker-alt"></i> Faisalabad, Pakistan</div>
+                            <div class="info-item"><i class="fas fa-envelope"></i> hashirhassan157@gmail.com</div>
+                            <div class="info-item"><i class="fas fa-university"></i> GCUF Student</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    <!-- services section -->
+    <section id="services" class="section">
+        <div class="container hidden">
+            <h2 class="section-title">What I Do</h2>
+            <div class="services-grid">
+
+                <div class="service-card">
+                    <div class="icon-box"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Web Development</h3>
+                    <p>Building fast, responsive, and secure websites using HTML, CSS, JS, and PHP.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon-box"><i class="fas fa-database"></i></div>
+                    <h3>Backend Solutions</h3>
+                    <p>Creating robust databases with MySQL and managing server-side logic effectively.</p>
+                </div>
+
+                <div class="service-card">
+                    <div class="icon-box"><i class="fas fa-paint-brush"></i></div>
+                    <h3>UI/UX Design</h3>
+                    <p>Crafting modern, aesthetic, and user-friendly interfaces with glassmorphism effects.</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="workflow" class="section">
+        <div class="container">
+            <h2 class="section-title">My Workflow</h2>
+
+            <div class="workflow-wrapper">
+                <div class="workflow-step">
+                    <div class="step-card" data-tilt>
+                        <div class="step-number">01</div>
+                        <div class="step-icon"><i class="fas fa-search"></i></div>
+                        <h3>Discover</h3>
+                        <p>I analyze requirements and research the target audience to understand the core problem.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-card" data-tilt>
+                        <div class="step-number">02</div>
+                        <div class="step-icon"><i class="fas fa-project-diagram"></i></div>
+                        <h3>Plan</h3>
+                        <p>Creating a roadmap, selecting the right tech stack, and structuring the database
+                            architecture.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-card" data-tilt>
+                        <div class="step-number">03</div>
+                        <div class="step-icon"><i class="fas fa-pencil-ruler"></i></div>
+                        <h3>Design</h3>
+                        <p>Crafting modern UI layouts and interactive wireframes that focus on user experience.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-card" data-tilt>
+                        <div class="step-number">04</div>
+                        <div class="step-icon"><i class="fas fa-code"></i></div>
+                        <h3>Develop</h3>
+                        <p>Writing clean, efficient code using PHP, MySQL, and JS to bring the design to life.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-card" data-tilt>
+                        <div class="step-number">05</div>
+                        <div class="step-icon"><i class="fas fa-tasks"></i></div>
+                        <h3>Test</h3>
+                        <p>Rigorous testing for bugs, performance optimization, and mobile responsiveness checks.</p>
+                    </div>
+                </div>
+
+                <div class="workflow-step">
+                    <div class="step-card" data-tilt>
+                        <div class="step-number">06</div>
+                        <div class="step-icon"><i class="fas fa-rocket"></i></div>
+                        <h3>Launch</h3>
+                        <p>Deploying the final product to the live server and ensuring smooth SEO indexing.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="section">
+        <div class="container hidden">
+            <h2 class="section-title">My Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h3>Frontend</h3>
+                    <div class="skill-bar">
+                        <div class="info"><span>HTML & CSS</span><span>95%</span></div>
+                        <div class="bar"><span class="progress html"></span></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="info"><span>JavaScript</span><span>85%</span></div>
+                        <div class="bar"><span class="progress js"></span></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="info"><span>Bootstrap/Tailwind</span><span>80%</span></div>
+                        <div class="bar"><span class="progress css-framework"></span></div>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Backend & Data</h3>
+                    <div class="skill-bar">
+                        <div class="info"><span>PHP</span><span>75%</span></div>
+                        <div class="bar"><span class="progress php"></span></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="info"><span>MySQL</span><span>80%</span></div>
+                        <div class="bar"><span class="progress sql"></span></div>
+                    </div>
+                    <div class="skill-bar">
+                        <div class="info"><span>Data Science</span><span>Learning</span></div>
+                        <div class="bar"><span class="progress ds"></span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <section id="tech-stack" class="section">
+        <div class="container hidden">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="tech-grid">
+                <div class="tech-item">
+                    <i class="fab fa-html5"></i>
+                    <span>HTML5</span>
+                </div>
+                <div class="tech-item">
+                    <div class="multi-icon">
+                        <i class="fab fa-css3-alt"></i>
+                        <span>/</span>
+                        <i class="fab fa-battle-net"></i>
+                    </div>
+                    <span>CSS & Tailwind</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-js"></i>
+                    <span>JavaScript</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-php"></i>
+                    <span>PHP</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fas fa-database"></i>
+                    <span>MySQL</span>
+                </div>
+                <div class="tech-item">
+                    <i class="fab fa-bootstrap"></i>
+                    <span>Bootstrap</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="section">
+    <div class="container">
+        <h2 class="section-title">My Journey</h2>
+        
+        <div class="timeline-container">
+            <div class="timeline-line"></div>
+
+            <div class="timeline-item left-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" data-tilt>
+                    <span class="timeline-date">Jan 2024 – Present</span>
+                    <div class="timeline-header">
+                        <h3>Freelance Web Developer</h3>
+                        <span class="company-badge">Self-Employed</span>
+                    </div>
+                    <p>
+                        Delivering custom web solutions for diverse clients over the last 2 years. 
+                        Recently built a full-stack <strong>Clothing E-Commerce Store</strong> with a custom Admin Panel using PHP & MySQL.
+                    </p>
+                    <div class="tech-tags">
+                        <span>PHP</span><span>MySQL</span><span>HTML/CSS</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item right-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content" data-tilt>
+                    <span class="timeline-date">Nov 2025 – Present</span>
+                    <div class="timeline-header">
+                        <h3>Frontend Intern</h3>
+                        <span class="company-badge">CodeAlpha (Remote)</span>
+                    </div>
+                    <p>
+                        Selected for a competitive frontend internship. I am developing responsive user interfaces, fixing bugs, and implementing modern UI features using React and Tailwind.
+                    </p>
+                    <div class="tech-tags">
+                        <span>React</span><span>Tailwind</span><span>Git</span>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+    <section id="projects" class="section">
+        <div class="container hidden">
+            <h2 class="section-title">Featured Projects</h2>
+            <div class="projects-container">
+
+                <div class="project-showcase">
+                    <div class="showcase-img" data-tilt>
+                        <img src="images/Go swift SS.png"
+                            alt="Web App Preview">
+                    </div>
+                    <div class="showcase-info">
+                        <span class="project-tag">Full-stack Project</span>
+                        <h3>Go swift Web App</h3>
+                        <p>GoSwift is a full-stack ride-sharing web application designed to connect vehicle owners and
+                            riders on a single platform. Vehicle owners can create an account and post available rides,
+                            while riders can browse these posts and book a ride that matches their destination. The
+                            system automatically divides the travel cost equally between the owner and the rider, making
+                            the journey affordable and efficient for both sides. This project highlights my skills in
+                            building real-world applications with user authentication, role-based functionality,
+                            database integration, and seamless booking workflows.</p>
+
+                        <div class="tech-list">
+                            <span><i class="fab fa-html5"></i> HTML5</span>
+                            <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                            <span><i class="fab fa-js"></i> JavaScript</span>
+                            <span><i class="fab fa-php"></i> PHP</span>
+                            <span><i class="fas fa-database"></i> MySQL</span>
+                        </div>
+
+                        <div class="showcase-btns">
+                            <a href="https://hashirhassan157-max.github.io/Go-Swift/" class="btn primary-btn">View Live
+                                Demo</a>
+                            <a href="https://github.com/hashirhassan157-max/Go-Swift" class="btn secondary-btn"><i
+                                    class="fab fa-github"></i>
+                                Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="project-showcase reverse">
+                    <div class="showcase-img" data-tilt>
+                        <img src="images/E commerce ss.png"
+                            alt="E-Commerce Preview">
+                    </div>
+                    <div class="showcase-info">
+                        <span class="project-tag">Full-stack Project</span>
+                        <h3>E-Commerce</h3>
+                        <p>Pj Collection is a fully functional full-stack e-commerce clothing platform built with a
+                            modern tech stack. It features a dynamic product catalog, user authentication, secure cart &
+                            checkout system, and an intuitive shopping experience. The project also includes a powerful
+                            admin panel where products, categories, orders, and users can be managed efficiently. This
+                            project showcases my skills in front-end development, backend APIs, database integration,
+                            responsive UI design, and building complete real-world applications from scratch.</p>
+
+                        <div class="tech-list">
+                            <span><i class="fab fa-html5"></i> HTML5</span>
+                            <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                            <span><i class="fab fa-js"></i> JavaScript</span>
+                            <span><i class="fab fa-php"></i> PHP</span>
+                            <span><i class="fas fa-database"></i> MySQL</span>
+                            <span><i class="fas fa-magic"></i> UI/UX</span>
+                        </div>
+
+                        <div class="showcase-btns">
+                            <a href="#" class="btn primary-btn">View Live Demo</a>
+                            <a href="https://github.com" class="btn secondary-btn"><i class="fab fa-github"></i>
+                                Code</a>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="project-showcase reverse">
+                    <div class="showcase-img" data-tilt>
+                        <img src="images/career sss.png"
+                            alt="career institutr">
+                    </div>
+                    <div class="showcase-info">
+                        <span class="project-tag">Frontend Project</span>
+                        <h3>IT-Insitute website</h3>
+                        <p>Career Institute is a fully responsive frontend website develop by  using only HTML, CSS, and JavaScript. The site has a clean design, easy navigation, a course section, contact info, and a modern layout. The main purpose of this website is to provide students with information about IT skills and different short courses so they can choose the right course for themselves.</p>
+
+                        <div class="tech-list">
+                            <span><i class="fab fa-html5"></i> HTML5</span>
+                            <span><i class="fab fa-css3-alt"></i> CSS3</span>
+                            <span><i class="fab fa-js"></i> JavaScript</span>
+                            <span><i class="fas fa-magic"></i> UI/UX</span>
+                        </div>
+
+                        <div class="showcase-btns">
+                            <a href="https://hashirhassan157-max.github.io/Career-institute-jhang/" class="btn primary-btn">View Live Demo</a>
+                            <a href="https://github.com/hashirhassan157-max/Career-institute-jhang" class="btn secondary-btn"><i class="fab fa-github"></i>
+                                Code</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section">
+        <div class="container hidden">
+            <h2 class="section-title">Get In Touch</h2>
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Let's Talk</h3>
+                    <p>I'm open to freelance opportunities and internships.</p>
+                    <div class="c-item">
+                        <i class="fas fa-phone-alt"></i>
+                        <span>0337-7068265</span>
+                    </div>
+                    <div class="c-item">
+                        <i class="fas fa-envelope"></i>
+                        <span>hashirhassan157@gmail.com</span>
+                    </div>
+                    <div class="c-item">
+                        <i class="fab fa-linkedin"></i>
+                        <span>/hashir-hassan157</span>
+                    </div>
+                </div>
+                <form class="contact-form">
+                    <input type="text" placeholder="Your Name" required>
+                    <input type="email" placeholder="Your Email" required>
+                    <textarea placeholder="Your Message" rows="5" required></textarea>
+                    <button type="submit" class="btn primary-btn">Send Message</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Hashir Hassan. All Rights Reserved.</p>
+        <div class="footer-socials">
+            <a href="#"><i class="fab fa-github"></i></a>
+            <a href="#"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+    <div class="ai-widget">
+        <button id="chat-toggle" class="chat-btn">
+            <i class="fas fa-robot"></i>
+        </button>
+        <div class="chat-window" id="chat-window">
+            <div class="chat-header">
+                <div class="bot-info">
+                    <i class="fas fa-robot"></i>
+                    <span>Hashir's AI Assistant</span>
+                </div>
+                <button id="close-chat"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="chat-body" id="chat-body">
+                <div class="message bot-msg">
+                    <p>Hi! I'm Hashir's AI assistant. Ask me about his skills, projects, or contact info!</p>
+                </div>
+            </div>
+            <div class="chat-input">
+                <input type="text" id="user-input" placeholder="Type a message...">
+                <button id="send-btn"><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+    </div>
+    <!-- Custom Glowing Cursor -->
+    <div class="cursor"></div>
+    <div class="cursor2"></div>
+
+    <button id="back-to-top" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

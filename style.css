@@ -1,0 +1,1669 @@
+/* --- Variables & Reset --- */
+:root {
+    --bg-color: #0f172a;
+    --card-bg: rgba(30, 41, 59, 0.7);
+    --primary: #38bdf8;
+    /* Cyan */
+    --secondary: #818cf8;
+    /* Purple */
+    --text-light: #f1f5f9;
+    --text-dim: #94a3b8;
+    --glass: rgba(255, 255, 255, 0.05);
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Inter', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-light);
+    font-family: var(--font-body);
+    overflow-x: hidden;
+    line-height: 1.6;
+    cursor: none;
+}
+
+/* --- Preloader --- */
+#preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #0f172a;
+    /* Matches your background */
+    z-index: 999999;
+    /* Must be the highest z-index */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.loader-content {
+    text-align: center;
+    width: 300px;
+}
+
+/* Scanner Circle Animation */
+.scanner {
+    width: 60px;
+    height: 60px;
+    border: 3px solid transparent;
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    animation: spin 1s linear infinite;
+    position: relative;
+}
+
+.scanner::before {
+    content: '';
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    right: 5px;
+    bottom: 5px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: var(--secondary);
+    animation: spin 3s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loader-text {
+    color: var(--primary);
+    font-family: var(--font-heading);
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+/* Loading Bar */
+.loader-bar {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.loader-progress {
+    width: 0%;
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    box-shadow: 0 0 10px var(--primary);
+    animation: load 2s ease-in-out forwards;
+}
+
+@keyframes load {
+    0% {
+        width: 0%;
+    }
+
+    50% {
+        width: 60%;
+    }
+
+    100% {
+        width: 100%;
+    }
+}
+
+/* Class to hide preloader */
+.preloader-hidden {
+    opacity: 0;
+    visibility: hidden;
+}
+
+/* --- Custom Cursor --- */
+.cursor {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid var(--primary);
+    position: fixed;
+    pointer-events: none;
+    /* Allows clicking through it */
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: 0.1s;
+    box-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+}
+
+.cursor2 {
+    width: 8px;
+    height: 8px;
+    background-color: var(--primary);
+    border-radius: 50%;
+    position: fixed;
+    pointer-events: none;
+    z-index: 9999;
+    transform: translate(-50%, -50%);
+    transition: 0.05s;
+}
+
+a,
+button,
+.btn {
+    cursor: none;
+    /* Keep custom cursor visible */
+}
+
+/* theme color switcher */
+.theme-switch {
+    position: fixed;
+    top: 100px;
+    right: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    z-index: 1000;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+    border-radius: 20px;
+}
+
+.theme-btn {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+/* praticles background */
+#particles-js {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    /* Puts it behind your content */
+    background-color: var(--bg-color);
+    /* Matches your theme */
+}
+
+/* progress bar  */
+#progress-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    z-index: 99999;
+    background: transparent;
+}
+
+#progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    width: 0%;
+    /* JS will change this */
+    transition: width 0.1s ease-out;
+    box-shadow: 0 0 10px var(--primary);
+}
+
+/* --- Utilities --- */
+a {
+    text-decoration: none;
+    color: inherit;
+    transition: 0.3s;
+}
+
+ul {
+    list-style: none;
+}
+
+.section {
+    padding: 80px 10%;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* .section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    color: transparent;
+} */
+
+.section-title {
+    font-family: var(--font-heading);
+    font-size: 2.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    /* Removed transparent/clip effect to ensure visibility */
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 10;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+}
+
+/* --- Scroll Animation Class --- */
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 1s ease;
+}
+
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --- Navbar --- */
+.navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 20px 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid var(--glass-border);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    font-family: var(--font-heading);
+}
+
+.logo span {
+    color: var(--primary);
+}
+
+.nav-links {
+    display: flex;
+    gap: 30px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    font-size: 1rem;
+    position: relative;
+}
+
+.nav-links a:hover {
+    color: var(--primary);
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background: var(--primary);
+    bottom: -5px;
+    left: 0;
+    transition: 0.3s;
+}
+
+.nav-links a:hover::after {
+    width: 100%;
+}
+
+.menu-btn {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+/* --- Hero Section --- */
+.hero {
+    min-height: 100vh;
+    padding: 120px 10% 50px;
+    /* Increased top padding to 120px to fix navbar overlap */
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: radial-gradient(circle at 80% 20%, rgba(56, 189, 248, 0.1) 0%, transparent 50%);
+    overflow: hidden;
+}
+
+.hero-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    /* Split into 2 equal columns */
+    align-items: center;
+    gap: 50px;
+    width: 100%;
+}
+
+.hero-text h3 {
+    font-size: 1.5rem;
+    color: var(--primary);
+}
+
+.hero-text h1 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    margin: 10px 0;
+    font-family: var(--font-heading);
+    line-height: 1.2;
+}
+
+.hero-text h2 {
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.hero-text p {
+    max-width: 90%;
+    color: var(--text-dim);
+    margin-bottom: 30px;
+}
+
+/* Right Side Image Styling */
+.hero-img {
+    display: flex;
+    justify-content: center;
+    position: relative;
+}
+
+.img-box {
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--glass-border);
+    box-shadow: 0 0 50px rgba(56, 189, 248, 0.3);
+    animation: floatImage 4s ease-in-out infinite;
+}
+
+.img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+@keyframes floatImage {
+    0% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-20px);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+.btn {
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.primary-btn {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: #fff;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.primary-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+}
+
+.secondary-btn {
+    border: 2px solid var(--primary);
+    margin-left: 20px;
+    color: var(--primary);
+}
+
+.secondary-btn:hover {
+    background: var(--primary);
+    color: #000;
+}
+
+.social-icons {
+    margin-top: 30px;
+    display: flex;
+    gap: 20px;
+}
+
+.social-icons a {
+    font-size: 1.5rem;
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    background: var(--glass);
+}
+
+.social-icons a:hover {
+    background: var(--primary);
+    color: #000;
+    transform: translateY(-5px);
+}
+
+/* --- About & Glass Cards --- */
+.about-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    /* Image takes less space than text */
+    gap: 60px;
+    align-items: center;
+}
+
+/* 1. Image Container Styling */
+.about-image-container {
+    position: relative;
+    width: 100%;
+    max-width: 350px;
+    margin: 0 auto;
+    cursor: pointer;
+    transition: all 0.5s ease;
+    z-index: 1;
+}
+
+.about-image-container img {
+    width: 100%;
+    height: 430px;
+    border-radius: 20px;
+    display: block;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--glass-border);
+    transition: all 0.5s ease;
+    position: relative;
+    z-index: 2;
+}
+
+/* Decorative Border behind image (Optional Visual Flair) */
+.img-border {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 100%;
+    height: 100%;
+    border: 3px solid var(--primary);
+    border-radius: 20px;
+    z-index: 1;
+    transition: all 0.5s ease;
+    opacity: 0.5;
+}
+
+/* 2. THE HOVER EFFECT: Move Up and Right */
+.about-image-container:hover img {
+    /* Translate X (Right) and Y (Up - negative value) */
+    transform: translate(15px, -15px);
+    border-color: var(--primary);
+    box-shadow: -10px 10px 40px rgba(56, 189, 248, 0.4);
+}
+
+.about-image-container:hover .img-border {
+    /* The border moves the opposite way slightly to create depth */
+    transform: translate(-5px, 5px);
+    opacity: 1;
+}
+
+/* 3. Text Card Adjustment */
+.about-card {
+    /* Ensuring it matches the grid layout */
+    width: 100%;
+    /* Keep your existing glassmorphism styles here */
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 40px;
+    border-radius: 20px;
+}
+
+/* --- Custom GitHub Card --- */
+.github-card {
+    margin-top: 25px;
+    margin-bottom: 10px;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+    border: 1px solid var(--glass-border);
+    padding: 15px 25px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 480px;
+    /* Fits perfectly in your About section */
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.github-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.2);
+    transform: translateY(-3px);
+}
+
+.gh-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.gh-content i {
+    font-size: 2.5rem;
+    color: var(--text-light);
+    transition: 0.3s;
+}
+
+.github-card:hover .gh-content i {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+.gh-text h4 {
+    color: var(--text-light);
+    font-size: 1.1rem;
+    margin-bottom: 2px;
+    font-weight: 600;
+}
+
+.gh-text p {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+    margin: 0;
+}
+
+.gh-btn {
+    background: var(--primary);
+    color: #0f172a;
+    /* Dark text for contrast */
+    padding: 8px 16px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: 0.3s;
+    text-decoration: none;
+    white-space: nowrap;
+}
+
+.gh-btn:hover {
+    background: #fff;
+    transform: translateX(5px);
+    /* Slide effect */
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+}
+
+
+/* --- Services Section --- */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+}
+
+.service-card {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: 15px;
+    border: 1px solid var(--glass-border);
+    text-align: center;
+    transition: 0.4s;
+    position: relative;
+    overflow: hidden;
+}
+
+.service-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+}
+
+.service-card .icon-box {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    background: rgba(56, 189, 248, 0.1);
+    width: 70px;
+    height: 70px;
+    line-height: 70px;
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    transition: 0.4s;
+}
+
+.service-card:hover .icon-box {
+    background: var(--primary);
+    color: #000;
+    transform: rotateY(360deg);
+    /* 3D Spin effect */
+}
+
+.service-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+    color: var(--text-light);
+}
+
+.service-card p {
+    color: var(--text-dim);
+    font-size: 0.95rem;
+}
+
+/* --- Advanced Workflow Section --- */
+.workflow-wrapper {
+    display: grid;
+    /* Forces 3 columns on large screens for the perfect 2-row look */
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding: 20px 0;
+}
+
+.step-card {
+    background: rgba(30, 41, 59, 0.4);
+    /* Darker glass */
+    backdrop-filter: blur(10px);
+    padding: 40px 25px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    text-align: center;
+    position: relative;
+    transition: all 0.4s ease;
+    overflow: hidden;
+    height: 100%;
+    z-index: 1;
+}
+
+/* 1. Neon Hover Glow Effect */
+.step-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    background: linear-gradient(45deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    z-index: -1;
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.step-card:hover::before {
+    opacity: 1;
+}
+
+.step-card:hover {
+    transform: translateY(-15px);
+    border-color: var(--primary);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.15);
+    /* Soft Blue Glow */
+}
+
+/* 2. Giant Watermark Number (01, 02...) */
+.step-number {
+    position: absolute;
+    top: -10px;
+    right: 10px;
+    font-size: 6rem;
+    font-weight: 900;
+    color: rgba(255, 255, 255, 0.02);
+    font-family: var(--font-heading);
+    z-index: 0;
+    transition: 0.4s;
+}
+
+.step-card:hover .step-number {
+    color: rgba(56, 189, 248, 0.1);
+    transform: scale(1.1) rotate(-5deg);
+    /* Dynamic tilt */
+}
+
+/* 3. Icon Styling */
+.step-icon {
+    font-size: 2.2rem;
+    color: var(--primary);
+    margin-bottom: 25px;
+    background: rgba(15, 23, 42, 0.6);
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    border-radius: 50%;
+    margin: 0 auto 25px;
+    box-shadow: 0 0 0 5px rgba(56, 189, 248, 0.1);
+    /* Ring effect */
+    position: relative;
+    z-index: 1;
+    transition: 0.4s;
+}
+
+.step-card:hover .step-icon {
+    background: var(--primary);
+    color: #0f172a;
+    box-shadow: 0 0 0 8px rgba(56, 189, 248, 0.2);
+    /* Ring expands */
+    transform: rotateY(360deg);
+}
+
+.step-card h3 {
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+    color: var(--text-light);
+    position: relative;
+    z-index: 1;
+}
+
+.step-card p {
+    font-size: 0.95rem;
+    color: var(--text-dim);
+    line-height: 1.6;
+    position: relative;
+    z-index: 1;
+}
+
+
+/* --- Skills --- */
+.skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+}
+
+.skill-category h3 {
+    margin-bottom: 20px;
+    color: var(--secondary);
+}
+
+.skill-bar {
+    margin-bottom: 20px;
+}
+
+.skill-bar .info {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.skill-bar .bar {
+    width: 100%;
+    height: 10px;
+    background: #1e293b;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.skill-bar .progress {
+    display: block;
+    height: 100%;
+    border-radius: 10px;
+    position: relative;
+}
+
+/* Animations defined in CSS for simplicity */
+.html {
+    width: 95%;
+    background: #e34c26;
+}
+
+.js {
+    width: 85%;
+    background: #f7df1e;
+}
+
+.css-framework {
+    width: 80%;
+    background: #38bdf8;
+}
+
+.php {
+    width: 75%;
+    background: #777bb4;
+}
+
+.sql {
+    width: 80%;
+    background: #00758f;
+}
+
+.ds {
+    width: 40%;
+    background: linear-gradient(to right, #ff00cc, #333399);
+}
+
+
+/* --- my journy Vertical Neon Timeline --- */
+.timeline-container {
+    position: relative;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+
+/* The Glowing Center Line */
+.timeline-line {
+    position: absolute;
+    left: 50%;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    transform: translateX(-50%);
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+}
+
+/* Fill the line with gradient */
+.timeline-line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* You can adjust this % to animate the line filling up */
+    background: linear-gradient(to bottom, var(--primary), var(--secondary));
+    opacity: 0.7;
+    border-radius: 10px;
+}
+
+.timeline-item {
+    position: relative;
+    width: 50%;
+    padding: 0 40px;
+    margin-bottom: 60px;
+}
+
+/* Left vs Right Alignment */
+.left-item {
+    left: 0;
+    text-align: right;
+}
+
+.right-item {
+    left: 50%;
+    text-align: left;
+}
+
+/* The Content Card */
+.timeline-content {
+    background: var(--glass);
+    padding: 30px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    position: relative;
+    transition: 0.4s;
+}
+
+.timeline-content:hover {
+    transform: translateY(-5px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* The Glowing Dot on the Line */
+.timeline-dot {
+    position: absolute;
+    top: 30px;
+    right: -10px;
+    /* For left items */
+    width: 20px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 50%;
+    box-shadow: 0 0 15px var(--primary);
+    z-index: 10;
+    border: 3px solid #0f172a;
+    /* Creates a gap effect */
+}
+
+.right-item .timeline-dot {
+    left: -10px;
+    right: auto;
+}
+
+/* Typography & Tags */
+.timeline-date {
+    display: inline-block;
+    color: var(--primary);
+    font-weight: 600;
+    margin-bottom: 10px;
+    font-size: 0.9rem;
+    letter-spacing: 1px;
+}
+
+.timeline-header h3 {
+    font-size: 1.5rem;
+    color: var(--text-light);
+    margin-bottom: 5px;
+}
+
+.company-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 4px 12px;
+    border-radius: 50px;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.timeline-content p {
+    color: var(--text-dim);
+    margin: 15px 0 20px;
+    line-height: 1.6;
+}
+
+.tech-tags {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    /* Align tags based on side */
+    justify-content: flex-end;
+}
+
+.right-item .tech-tags {
+    justify-content: flex-start;
+}
+
+.tech-tags span {
+    font-size: 0.75rem;
+    padding: 5px 12px;
+    background: rgba(56, 189, 248, 0.05);
+    color: var(--primary);
+    border: 1px solid rgba(56, 189, 248, 0.2);
+    border-radius: 20px;
+}
+
+
+
+/* --- Tech Stack Section --- */
+.tech-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 30px;
+    justify-items: center;
+    text-align: center;
+    margin-top: 40px;
+}
+
+.tech-item {
+    background: var(--glass);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    padding: 25px 15px;
+    border-radius: 15px;
+    width: 100%;
+    max-width: 150px;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.tech-item:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 25px rgba(56, 189, 248, 0.3);
+    border-color: var(--primary);
+}
+
+.tech-item i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: 0.3s ease;
+    /* REMOVED the background gradient line causing the bug */
+}
+
+.tech-item span {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-light);
+    letter-spacing: 0.5px;
+}
+
+/* Styling for combined icons like CSS & Tailwind */
+.multi-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    margin-bottom: 15px;
+}
+
+.multi-icon i {
+    font-size: 2.5rem;
+    margin-bottom: 0;
+}
+
+.multi-icon span {
+    font-size: 1.5rem;
+    color: var(--text-dim);
+    font-weight: 300;
+}
+
+/* Add these NEW rules to color each icon correctly */
+.tech-item .fa-html5 {
+    color: #e34c26;
+}
+
+/* HTML Orange */
+.tech-item .fa-css3-alt {
+    color: #264de4;
+}
+
+/* CSS Blue */
+.tech-item .fa-js {
+    color: #f7df1e;
+}
+
+/* JS Yellow */
+.tech-item .fa-php {
+    color: #777bb4;
+}
+
+/* PHP Purple */
+.tech-item .fa-database {
+    color: #00758f;
+}
+
+/* MySQL Teal */
+.tech-item .fa-bootstrap {
+    color: #7952b3;
+}
+
+/* Bootstrap Purple */
+.tech-item .fa-battle-net {
+    color: #38bdf8;
+}
+
+/* Tailwind Blue */
+
+/* Optional: Add a glow effect on hover */
+.tech-item:hover i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 0 10px currentColor);
+}
+
+/* --- Projects --- */
+/* --- Featured Project Layout (Zig-Zag) --- */
+.projects-container {
+    display: flex;
+    flex-direction: column;
+    gap: 100px;
+    /* Space between projects */
+    padding: 20px 0;
+}
+
+.project-showcase {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    background: var(--glass);
+    /* Glass effect backing */
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+    transition: 0.3s;
+}
+
+/* Reverse layout for the second project */
+.project-showcase.reverse {
+    flex-direction: row-reverse;
+}
+
+/* Image Container - No Cropping */
+.showcase-img {
+    flex: 1.2;
+    /* Takes up slightly more space */
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--glass-border);
+}
+
+.showcase-img img {
+    width: 100%;
+    height: auto;
+    /* Maintains original aspect ratio - NO CROPPING */
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.showcase-img:hover img {
+    transform: scale(1.03);
+    /* Slight zoom on hover */
+}
+
+/* Text Content */
+.showcase-info {
+    flex: 1;
+}
+
+.project-tag {
+    display: inline-block;
+    color: var(--primary);
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.showcase-info h3 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: var(--text-light);
+}
+
+.showcase-info p {
+    color: var(--text-dim);
+    margin-bottom: 25px;
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* Tech Icons List */
+.tech-list {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+
+.tech-list span {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--primary);
+    padding: 8px 15px;
+    border-radius: 50px;
+    font-size: 0.9rem;
+    border: 1px solid rgba(56, 189, 248, 0.2);
+}
+
+.showcase-btns {
+    display: flex;
+    gap: 15px;
+}
+
+/* --- Contact --- */
+.contact-wrapper {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 50px;
+    background: var(--glass);
+    padding: 40px;
+    border-radius: 20px;
+    border: 1px solid var(--glass-border);
+}
+
+.c-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+    font-size: 1.1rem;
+}
+
+.c-item i {
+    color: var(--primary);
+    font-size: 1.2rem;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.contact-form input,
+.contact-form textarea {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    padding: 15px;
+    border-radius: 10px;
+    color: #fff;
+    font-family: var(--font-body);
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+    outline: none;
+    border-color: var(--primary);
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 40px;
+    border-top: 1px solid var(--glass-border);
+    color: var(--text-dim);
+}
+
+.footer-socials {
+    margin-top: 10px;
+}
+
+.footer-socials a {
+    margin: 0 10px;
+    font-size: 1.2rem;
+    color: var(--text-light);
+}
+
+.footer-socials a:hover {
+    color: var(--primary);
+}
+
+/* --- AI Chatbot --- */
+.ai-widget {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 2000;
+}
+
+.chat-btn {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    border: none;
+    color: #fff;
+    font-size: 1.5rem;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.5);
+    transition: 0.3s;
+}
+
+.chat-btn:hover {
+    transform: scale(1.1);
+}
+
+.chat-window {
+    position: absolute;
+    bottom: 80px;
+    right: 0;
+    width: 350px;
+    height: 450px;
+    background: #1e293b;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    display: none;
+    /* Hidden by default */
+    flex-direction: column;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    animation: slideUp 0.3s ease;
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.chat-header {
+    background: linear-gradient(to right, var(--primary), var(--secondary));
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: #fff;
+}
+
+.chat-body {
+    flex: 1;
+    padding: 15px;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.message {
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 80%;
+    font-size: 0.9rem;
+}
+
+.bot-msg {
+    background: rgba(56, 189, 248, 0.2);
+    color: var(--text-light);
+    align-self: flex-start;
+}
+
+.user-msg {
+    background: var(--primary);
+    color: #000;
+    align-self: flex-end;
+}
+
+.chat-input {
+    display: flex;
+    border-top: 1px solid var(--glass-border);
+    padding: 10px;
+    background: #0f172a;
+}
+
+.chat-input input {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #fff;
+    padding: 5px;
+    outline: none;
+}
+
+.chat-input button {
+    background: none;
+    border: none;
+    color: var(--primary);
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+/* --- Back to Top Button --- */
+#back-to-top {
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    /* Opposite side of the AI chat */
+    width: 50px;
+    height: 50px;
+    background: var(--glass);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    /*Hidden by default*/
+    align-items: center;
+    justify-content: center;
+    font-size: 1.2rem;
+    z-index: 999;
+    transition: 0.3s;
+    backdrop-filter: blur(10px);
+}
+
+#back-to-top:hover {
+    background: var(--primary);
+    color: #000;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px var(--primary);
+}
+
+/* =========================================
+   MOBILE RESPONSIVE FIXES (UPDATED)
+   ========================================= */
+
+/* Tablet & Smaller Laptops (Max Width 1024px) */
+@media (max-width: 1024px) {
+    .section {
+        padding: 60px 5%;
+    }
+
+    .navbar {
+        padding: 20px 5%;
+    }
+
+    .about-wrapper {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .about-image-container {
+        margin-bottom: 40px;
+    }
+
+    .github-card {
+        margin: 25px auto;
+    }
+
+    .hero-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero-img {
+        order: -1;
+        margin-bottom: 40px;
+    }
+
+    .hero-text p,
+    .social-icons {
+        justify-content: center;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .projects-container {
+        gap: 60px;
+    }
+
+    .project-showcase,
+    .project-showcase.reverse {
+        flex-direction: column;
+        text-align: center;
+        padding: 30px;
+    }
+
+    .showcase-btns,
+    .tech-list {
+        justify-content: center;
+    }
+}
+
+/* Mobile Devices (Max Width 768px) */
+@media (max-width: 768px) {
+
+    /* --- 1. Navbar Fixes --- */
+    .menu-btn {
+        display: block;
+    }
+
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: rgba(15, 23, 42, 0.95);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        padding: 20px;
+        text-align: center;
+        border-bottom: 1px solid var(--glass-border);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-links li {
+        margin: 15px 0;
+    }
+
+    /* --- 2. Hero Text Resize --- */
+    .hero-text h1 {
+        font-size: 2.2rem;
+    }
+
+    .hero-text h2 {
+        font-size: 1.2rem;
+    }
+
+    .img-box {
+        width: 200px;
+        height: 200px;
+    }
+
+    /* --- 3. Experience Timeline Fix --- */
+    .timeline-container {
+        padding: 20px 0;
+    }
+
+    .timeline-line {
+        left: 20px;
+    }
+
+    .timeline-item {
+        width: 100%;
+        padding-left: 50px;
+        padding-right: 0;
+        margin-bottom: 40px;
+    }
+
+    .left-item,
+    .right-item {
+        left: 0;
+        text-align: left;
+    }
+
+    .timeline-dot {
+        left: 11px;
+        right: auto;
+    }
+
+    .right-item .timeline-dot {
+        left: 11px;
+    }
+
+    .timeline-content {
+        padding: 20px;
+        text-align: left;
+    }
+
+    .tech-tags {
+        justify-content: flex-start;
+    }
+
+    /* --- 4. GRID FIXES (2 Columns side-by-side) --- */
+    
+    /* Services (What I Do) - Force 2 Columns */
+    .services-grid {
+        grid-template-columns: repeat(2, 1fr); /* Forces 2 columns */
+        gap: 15px; /* Smaller gap to make them fit */
+    }
+
+    .service-card {
+        padding: 20px 15px; /* Reduce padding to save space */
+    }
+
+    .service-card h3 {
+        font-size: 1.1rem; /* Smaller text */
+    }
+
+    .service-card .icon-box {
+        width: 50px;
+        height: 50px;
+        line-height: 50px;
+        font-size: 1.5rem;
+        margin-bottom: 15px;
+    }
+
+    /* Workflow - Force 2 Columns */
+    .workflow-wrapper {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
+    }
+
+    .step-card {
+        padding: 20px 15px;
+    }
+
+    .step-icon {
+        width: 60px;
+        height: 60px;
+        line-height: 60px;
+        font-size: 1.5rem;
+    }
+
+    .step-number {
+        font-size: 4rem; /* Reduce the giant number size */
+    }
+
+    /* Tech Stack - Force 2 Columns */
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr); /* Changed from 3 to 2 for better readability on mobile */
+        gap: 15px;
+    }
+
+    /* Skills - Keep 1 Column (Bars look bad if squished) */
+    .skills-grid {
+        grid-template-columns: 1fr; 
+    }
+
+    /* --- 5. Contact Form Fix --- */
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 25px;
+    }
+
+    /* --- 6. Chat Window Mobile --- */
+    .chat-window {
+        width: 280px;
+        right: 10px;
+        bottom: 90px;
+    }
+}
+
+/* Small Mobile (Very Narrow Screens < 380px) */
+@media (max-width: 380px) {
+    /* If screen is SUPER small, revert Services/Workflow to 1 column to prevent breaking */
+    .services-grid, .workflow-wrapper {
+        grid-template-columns: 1fr;
+    }
+    
+    .section-title {
+        font-size: 1.8rem;
+    }
+    
+    .project-showcase {
+        padding: 15px;
+    }
+    
+    .showcase-info h3 {
+        font-size: 1.5rem;
+    }
+}
