@@ -1447,17 +1447,44 @@ footer {
         padding: 20px 5%;
     }
 
+    /* FIX 1: Prevent Image Distortion */
+    .about-image-container img {
+        height: auto;
+        aspect-ratio: 1 / 1.3; /* Maintains portrait shape */
+        object-fit: cover;
+    }
+    
+
     .about-wrapper {
-        grid-template-columns: 1fr;
-        text-align: center;
+        display: flex;             /* Switch from Grid to Flexbox */
+        flex-direction: column;    /* Stack items vertically (Top to Bottom) */
+        align-items: center;       /* Perfect horizontal centering */
+        justify-content: center;
+        text-align: center;        /* Ensures text inside is also centered */
+        gap: 40px;
+    }
+    .about-card {
+        width: 100%;               /* Ensure the text box fills the width */
+        max-width: 600px;          /* Prevents it from getting too wide on tablets */
+        margin: 0 auto;            /* Centers the box itself */
     }
 
     .about-image-container {
         margin-bottom: 40px;
+        margin: 0 auto;
+    }
+    a.gh-btn {
+        width: 84px;
+        font-size: 10px;
+        margin-left: -4px;
+    }
+    .gh-btn i{
+        font-size: 10px;
+        margin-left: -5px;
     }
 
     .github-card {
-        margin: 25px auto;
+        margin: 10px auto;
     }
 
     .hero-container {
@@ -1494,7 +1521,7 @@ footer {
     }
 }
 
-/* Mobile Devices (Max Width 768px) */
+/* Tablets / Large Phones (Max Width 768px) */
 @media (max-width: 768px) {
 
     /* --- 1. Navbar Fixes --- */
@@ -1537,6 +1564,7 @@ footer {
         width: 200px;
         height: 200px;
     }
+    
 
     /* --- 3. Experience Timeline Fix --- */
     .timeline-container {
@@ -1560,13 +1588,14 @@ footer {
         text-align: left;
     }
 
+    /* FIX 2: Perfect Center Alignment (12px instead of 11px) */
     .timeline-dot {
-        left: 11px;
+        left: 12px; 
         right: auto;
     }
 
     .right-item .timeline-dot {
-        left: 11px;
+        left: 12px;
     }
 
     .timeline-content {
@@ -1578,20 +1607,21 @@ footer {
         justify-content: flex-start;
     }
 
-    /* --- 4. GRID FIXES (2 Columns side-by-side) --- */
+    /* --- 4. GRID CONFIGURATION --- */
+    /* By default on tablets, we want 2 columns. 
+       Phones will override this in the next media query below. */
     
-    /* Services (What I Do) - Force 2 Columns */
     .services-grid {
-        grid-template-columns: repeat(2, 1fr); /* Forces 2 columns */
-        gap: 15px; /* Smaller gap to make them fit */
+        grid-template-columns: repeat(2, 1fr);
+        gap: 15px;
     }
 
     .service-card {
-        padding: 20px 15px; /* Reduce padding to save space */
+        padding: 20px 15px;
     }
 
     .service-card h3 {
-        font-size: 1.1rem; /* Smaller text */
+        font-size: 1.1rem;
     }
 
     .service-card .icon-box {
@@ -1602,7 +1632,6 @@ footer {
         margin-bottom: 15px;
     }
 
-    /* Workflow - Force 2 Columns */
     .workflow-wrapper {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
@@ -1620,16 +1649,14 @@ footer {
     }
 
     .step-number {
-        font-size: 4rem; /* Reduce the giant number size */
+        font-size: 4rem;
     }
 
-    /* Tech Stack - Force 2 Columns */
     .tech-grid {
-        grid-template-columns: repeat(2, 1fr); /* Changed from 3 to 2 for better readability on mobile */
+        grid-template-columns: repeat(3, 1fr); 
         gap: 15px;
     }
 
-    /* Skills - Keep 1 Column (Bars look bad if squished) */
     .skills-grid {
         grid-template-columns: 1fr; 
     }
@@ -1640,6 +1667,40 @@ footer {
         padding: 25px;
     }
 
+    /* --- FIX FOR OVERFLOWING PROJECTS --- */
+    
+    /* 1. Force the container to stay within screen limits */
+    .project-showcase {
+        max-width: 100%;
+        overflow: hidden; /* Cuts off anything that still tries to stick out */
+    }
+
+    .showcase-info {
+        width: 100%; /* Ensures text doesn't stretch wider than container */
+    }
+
+    /* 2. Allow Tech Icons to wrap to the next line */
+    .tech-list {
+        flex-wrap: wrap;       /* <--- CRITICAL FIX */
+        justify-content: center;
+        gap: 10px;             /* Slightly smaller gap for mobile */
+    }
+
+    /* 3. Allow Buttons to stack or wrap */
+    .showcase-btns {
+        flex-wrap: wrap;       /* <--- CRITICAL FIX */
+        justify-content: center;
+        width: 100%;
+        gap: 10px;
+    }
+
+    /* Optional: Make buttons full width on phones for easier tapping */
+    .showcase-btns .btn {
+        width: 100%;
+        text-align: center;
+        margin-left: 0; /* Reset any margins */
+    }
+
     /* --- 6. Chat Window Mobile --- */
     .chat-window {
         width: 280px;
@@ -1648,11 +1709,37 @@ footer {
     }
 }
 
-/* Small Mobile (Very Narrow Screens < 380px) */
-@media (max-width: 380px) {
-    /* If screen is SUPER small, revert Services/Workflow to 1 column to prevent breaking */
-    .services-grid, .workflow-wrapper {
+/* FIX 3: MOBILE PHONES (Increased from 380px to 600px) 
+   This ensures standard phones (iPhone/Samsung) get 1 column, not 2. */
+@media (max-width: 600px) {
+.hero-btns {
+        display: flex;          /* Activate Flexbox */
+        flex-direction: column; /* Stack buttons top-to-bottom */
+        gap: 15px;              /* Creates the missing vertical gap */
+        width: 100%;            /* Ensure container fits width */
+        max-width: 171px;       /* prevent them from getting too wide */
+        margin: 0 auto;         /* Center the button stack */
+    }
+    .secondary-btn {
+        margin-left: 0;         /* Remove the desktop side-margin */
+    }
+
+    /* Revert to 1 column for readability on all phones */
+    .services-grid, 
+    .workflow-wrapper {
         grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    /* Tech icons can stay 3 columns or go to 2 if you prefer */
+    .tech-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        
+        width: 100%;
+        gap: 15px;
+        padding: 0;
+        margin-top: 30px;
+        justify-content: center;
     }
     
     .section-title {
@@ -1660,10 +1747,15 @@ footer {
     }
     
     .project-showcase {
-        padding: 15px;
+        padding: 20px;
     }
     
     .showcase-info h3 {
         font-size: 1.5rem;
+    }
+
+    /* Fix font size for very small text */
+    .showcase-info p {
+        font-size: 0.95rem;
     }
 }
