@@ -31,6 +31,13 @@
         <div class="theme-btn" style="background:#38bdf8;" onclick="setTheme('#38bdf8', '#818cf8')"></div>
         <div class="theme-btn" style="background:#22c55e;" onclick="setTheme('#22c55e', '#166534')"></div>
         <div class="theme-btn" style="background:#f59e0b;" onclick="setTheme('#f59e0b', '#b45309')"></div>
+        <hr class="theme-divider">
+        <button id="theme-toggle" class="theme-toggle-btn" title="Toggle Light/Dark Theme">
+            <span class="theme-toggle-icon"><i class="fas fa-moon"></i></span>
+        </button>
+        <button id="audio-toggle" class="audio-toggle-btn" title="Toggle Sound Feedback">
+            <span class="audio-toggle-icon"><i class="fas fa-volume-up"></i></span>
+        </button>
     </div>
 
     <div id="particles-js"></div>
@@ -40,7 +47,7 @@
     </div>
 
     <nav class="navbar">
-        <div class="logo">Hashir Hassan<span>.</span></div>
+        <div class="logo">Hashir<span>.</span></div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
@@ -77,7 +84,7 @@
 
             <div class="hero-img hidden">
                 <div class="img-box">
-                    <img src="images/favicon.png" alt="Hashir Hassan">
+                    <img src="images/new portfolio.png" alt="Hashir Hassan">
                 </div>
             </div>
 
@@ -92,7 +99,7 @@
             <div class="about-wrapper">
 
                 <div class="about-image-container">
-                    <img src="images/crop 2.jpg" alt="Hashir Hassan">
+                    <img src="images/new portfolio.png" alt="Hashir Hassan">
                     <div class="img-border"></div>
                 </div>
 
@@ -153,6 +160,62 @@
                     <p>Crafting modern, aesthetic, and user-friendly interfaces with glassmorphism effects.</p>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="section">
+        <div class="container hidden">
+            <h2 class="section-title">My Achievements</h2>
+            <div class="stats-grid">
+                <div class="stat-card" data-tilt>
+                    <div class="stat-icon">
+                        <i class="fas fa-project-diagram"></i>
+                    </div>
+                    <div class="stat-number" data-target="05">0</div>
+                    <div class="stat-label">Projects Completed</div>
+                </div>
+
+                <div class="stat-card" data-tilt>
+                    <div class="stat-icon">
+                        <i class="fas fa-code-branch"></i>
+                    </div>
+                    <div class="stat-number" data-target="500">0</div>
+                    <div class="stat-label">GitHub Commits</div>
+                </div>
+
+                <div class="stat-card" data-tilt>
+                    <div class="stat-icon">
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <div class="stat-number" data-target="25">0</div>
+                    <div class="stat-label">GitHub Stars</div>
+                </div>
+
+                <div class="stat-card" data-tilt>
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-number" data-target="10">0</div>
+                    <div class="stat-label">Happy Clients</div>
+                </div>
+
+                <div class="stat-card" data-tilt>
+                    <div class="stat-icon">
+                        <i class="fas fa-coffee"></i>
+                    </div>
+                    <div class="stat-number" data-target="2000">0</div>
+                    <div class="stat-label">Cups of Coffee</div>
+                </div>
+
+                <div class="stat-card" data-tilt>
+                    <div class="stat-icon">
+                        <i class="fas fa-hourglass-half"></i>
+                    </div>
+                    <div class="stat-number" data-target="2">0</div>
+                    <div class="stat-label">Years Experience</div>
+                </div>
             </div>
         </div>
     </section>
@@ -250,7 +313,7 @@
                         <div class="bar"><span class="progress sql"></span></div>
                     </div>
                     <div class="skill-bar">
-                        <div class="info"><span>Data Science</span><span>Learning</span></div>
+                        <div class="info"><span>Devops</span><span>Learning</span></div>
                         <div class="bar"><span class="progress ds"></span></div>
                     </div>
                 </div>
@@ -296,50 +359,76 @@
     </section>
 
     <section id="experience" class="section">
-    <div class="container">
-        <h2 class="section-title">My Journey</h2>
-        
-        <div class="timeline-container">
-            <div class="timeline-line"></div>
+        <div class="container">
+            <h2 class="section-title">My Journey</h2>
 
-            <div class="timeline-item left-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content" data-tilt>
-                    <span class="timeline-date">Jan 2024 – Present</span>
-                    <div class="timeline-header">
-                        <h3>Freelance Web Developer</h3>
-                        <span class="company-badge">Self-Employed</span>
+            <div class="timeline-container">
+                <div class="timeline-line"></div>
+
+                <div class="timeline-item left-item timeline-animate">
+                    <div class="timeline-dot">
+                        <div class="dot-pulse"></div>
+                        <i class="fas fa-briefcase"></i>
                     </div>
-                    <p>
-                        Delivering custom web solutions for diverse clients over the last 2 years. 
-                        Recently built a full-stack <strong>Clothing E-Commerce Store</strong> with a custom Admin Panel using PHP & MySQL.
-                    </p>
-                    <div class="tech-tags">
-                        <span>PHP</span><span>MySQL</span><span>HTML/CSS</span>
+                    <div class="timeline-content" data-tilt>
+                        <div class="timeline-icon-wrapper">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <span class="timeline-date">Jan 2024 – Present</span>
+                        <div class="timeline-header">
+                            <h3>Freelance Web Developer</h3>
+                            <span class="company-badge">Self-Employed</span>
+                        </div>
+                        <p>
+                            Delivering custom web solutions for diverse clients over the last 2 years.
+                            Recently built a full-stack <strong>Clothing E-Commerce Store</strong> with a custom Admin
+                            Panel using PHP & MySQL.
+                        </p>
+                        <div class="tech-tags">
+                            <span><i class="fab fa-php"></i> PHP</span>
+                            <span><i class="fas fa-database"></i> MySQL</span>
+                            <span><i class="fab fa-html5"></i> HTML/CSS</span>
+                        </div>
+                        <div class="timeline-milestone">
+                            <i class="fas fa-trophy"></i>
+                            <span>2+ Years Experience</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
-            <div class="timeline-item right-item">
-                <div class="timeline-dot"></div>
-                <div class="timeline-content" data-tilt>
-                    <span class="timeline-date">Nov 2025 – Present</span>
-                    <div class="timeline-header">
-                        <h3>Frontend Intern</h3>
-                        <span class="company-badge">CodeAlpha (Remote)</span>
+                <div class="timeline-item right-item timeline-animate">
+                    <div class="timeline-dot">
+                        <div class="dot-pulse"></div>
+                        <i class="fas fa-graduation-cap"></i>
                     </div>
-                    <p>
-                        Selected for a competitive frontend internship. I am developing responsive user interfaces, fixing bugs, and implementing modern UI features using React and Tailwind.
-                    </p>
-                    <div class="tech-tags">
-                        <span>React</span><span>Tailwind</span><span>Git</span>
+                    <div class="timeline-content" data-tilt>
+                        <div class="timeline-icon-wrapper">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <span class="timeline-date">Nov 2025 – Present</span>
+                        <div class="timeline-header">
+                            <h3>Frontend Intern</h3>
+                            <span class="company-badge">CodeAlpha (Remote)</span>
+                        </div>
+                        <p>
+                            Selected for a competitive frontend internship. I am developing responsive user interfaces,
+                            fixing bugs, and implementing modern UI features using React and Tailwind.
+                        </p>
+                        <div class="tech-tags">
+                            <span><i class="fab fa-react"></i> React</span>
+                            <span><i class="fab fa-css3-alt"></i> Tailwind</span>
+                            <span><i class="fab fa-git-alt"></i> Git</span>
+                        </div>
+                        <div class="timeline-milestone">
+                            <i class="fas fa-star"></i>
+                            <span>Active Learning</span>
+                        </div>
                     </div>
                 </div>
-            </div>
 
+            </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <section id="projects" class="section">
         <div class="container hidden">
@@ -348,8 +437,12 @@
 
                 <div class="project-showcase">
                     <div class="showcase-img" data-tilt>
-                        <img src="images/Go swift SS.png"
-                            alt="Web App Preview">
+                        <img src="images/Go swift SS.png" alt="Web App Preview">
+                        <div class="img-overlay">
+                            <button class="demo-btn" data-project="goswift">
+                                <i class="fas fa-play-circle"></i> View Demo
+                            </button>
+                        </div>
                     </div>
                     <div class="showcase-info">
                         <span class="project-tag">Full-stack Project</span>
@@ -371,10 +464,15 @@
                         </div>
 
                         <div class="showcase-btns">
-                            <a href="https://hashirhassan157-max.github.io/Go-Swift/" class="btn primary-btn">View Live
-                                Demo</a>
-                            <a href="https://github.com/hashirhassan157-max/Go-Swift" class="btn secondary-btn"><i
-                                    class="fab fa-github"></i>
+                            <button class="btn primary-btn demo-btn" data-project="goswift">
+                                <i class="fas fa-play-circle"></i> Interactive Demo
+                            </button>
+                            <a href="https://hashirhassan157-max.github.io/Go-Swift/" class="btn secondary-btn"
+                                target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Site
+                            </a>
+                            <a href="https://github.com/hashirhassan157-max/Go-Swift" class="btn secondary-btn"
+                                target="_blank"><i class="fab fa-github"></i>
                                 Code</a>
                         </div>
                     </div>
@@ -382,8 +480,12 @@
 
                 <div class="project-showcase reverse">
                     <div class="showcase-img" data-tilt>
-                        <img src="images/E commerce ss.png"
-                            alt="E-Commerce Preview">
+                        <img src="images/E commerce ss.png" alt="E-Commerce Preview">
+                        <div class="img-overlay">
+                            <button class="demo-btn" data-project="ecommerce">
+                                <i class="fas fa-play-circle"></i> View Demo
+                            </button>
+                        </div>
                     </div>
                     <div class="showcase-info">
                         <span class="project-tag">Full-stack Project</span>
@@ -405,8 +507,14 @@
                         </div>
 
                         <div class="showcase-btns">
-                            <a href="#" class="btn primary-btn">View Live Demo</a>
-                            <a href="https://github.com" class="btn secondary-btn"><i class="fab fa-github"></i>
+                            <button class="btn primary-btn demo-btn" data-project="ecommerce">
+                                <i class="fas fa-play-circle"></i> Interactive Demo
+                            </button>
+                            <a href="#" class="btn secondary-btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Site
+                            </a>
+                            <a href="https://github.com" class="btn secondary-btn" target="_blank"><i
+                                    class="fab fa-github"></i>
                                 Code</a>
                         </div>
                     </div>
@@ -415,13 +523,21 @@
 
                 <div class="project-showcase reverse">
                     <div class="showcase-img" data-tilt>
-                        <img src="images/career sss.png"
-                            alt="career institutr">
+                        <img src="images/career sss.png" alt="career institutr">
+                        <div class="img-overlay">
+                            <button class="demo-btn" data-project="career">
+                                <i class="fas fa-play-circle"></i> View Demo
+                            </button>
+                        </div>
                     </div>
                     <div class="showcase-info">
                         <span class="project-tag">Frontend Project</span>
                         <h3>IT-Insitute website</h3>
-                        <p>Career Institute is a fully responsive frontend website develop by  using only HTML, CSS, and JavaScript. The site has a clean design, easy navigation, a course section, contact info, and a modern layout. The main purpose of this website is to provide students with information about IT skills and different short courses so they can choose the right course for themselves.</p>
+                        <p>Career Institute is a fully responsive frontend website develop by using only HTML, CSS, and
+                            JavaScript. The site has a clean design, easy navigation, a course section, contact info,
+                            and a modern layout. The main purpose of this website is to provide students with
+                            information about IT skills and different short courses so they can choose the right course
+                            for themselves.</p>
 
                         <div class="tech-list">
                             <span><i class="fab fa-html5"></i> HTML5</span>
@@ -431,8 +547,15 @@
                         </div>
 
                         <div class="showcase-btns">
-                            <a href="https://hashirhassan157-max.github.io/Career-institute-jhang/" class="btn primary-btn">View Live Demo</a>
-                            <a href="https://github.com/hashirhassan157-max/Career-institute-jhang" class="btn secondary-btn"><i class="fab fa-github"></i>
+                            <button class="btn primary-btn demo-btn" data-project="career">
+                                <i class="fas fa-play-circle"></i> Interactive Demo
+                            </button>
+                            <a href="https://hashirhassan157-max.github.io/Career-institute-jhang/"
+                                class="btn secondary-btn" target="_blank">
+                                <i class="fas fa-external-link-alt"></i> Live Site
+                            </a>
+                            <a href="https://github.com/hashirhassan157-max/Career-institute-jhang"
+                                class="btn secondary-btn" target="_blank"><i class="fab fa-github"></i>
                                 Code</a>
                         </div>
                     </div>
@@ -490,7 +613,20 @@
                     <i class="fas fa-robot"></i>
                     <span>Hashir's AI Assistant</span>
                 </div>
-                <button id="close-chat"><i class="fas fa-times"></i></button>
+                <div class="chat-header-actions">
+                    <button id="chat-settings-btn" title="AI Settings"><i class="fas fa-cog"></i></button>
+                    <button id="close-chat"><i class="fas fa-times"></i></button>
+                </div>
+            </div>
+            <div class="api-settings-panel" id="api-settings-panel">
+                <h4>Gemini AI Configuration</h4>
+                <p>Paste a free <a href="https://aistudio.google.com/" target="_blank">Gemini API key</a> for natural AI
+                    chat:</p>
+                <div class="api-input-group">
+                    <input type="password" id="gemini-key-input" placeholder="AI Studio Key...">
+                    <button id="save-key-btn">Save</button>
+                </div>
+                <div class="api-status" id="api-status"></div>
             </div>
             <div class="chat-body" id="chat-body">
                 <div class="message bot-msg">
@@ -511,8 +647,65 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Project Demo Modal -->
+    <div id="demo-modal" class="demo-modal">
+        <div class="modal-overlay"></div>
+        <div class="modal-container">
+            <button class="modal-close" id="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <div class="modal-header">
+                <h2 id="modal-title">Project Demo</h2>
+                <div class="modal-tabs">
+                    <button class="tab-btn active" data-tab="demo">
+                        <i class="fas fa-play-circle"></i> Live Demo
+                    </button>
+                    <button class="tab-btn" data-tab="gallery">
+                        <i class="fas fa-images"></i> Gallery
+                    </button>
+                </div>
+            </div>
+            <div class="modal-content">
+                <!-- Live Demo Tab -->
+                <div class="tab-content active" id="demo-tab">
+                    <div class="demo-frame-container">
+                        <iframe id="demo-iframe" src="" frameborder="0" allowfullscreen></iframe>
+                        <div class="iframe-loading">
+                            <div class="loader-spinner"></div>
+                            <p>Loading demo...</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Gallery Tab -->
+                <div class="tab-content" id="gallery-tab">
+                    <div class="gallery-container">
+                        <div class="gallery-main">
+                            <img id="gallery-main-img" src="" alt="Project Screenshot">
+                            <button class="gallery-nav prev-btn" id="prev-img">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="gallery-nav next-btn" id="next-img">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                        <div class="gallery-thumbnails" id="gallery-thumbnails">
+                            <!-- Thumbnails will be generated by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <a id="modal-live-link" href="#" class="btn primary-btn" target="_blank">
+                    <i class="fas fa-external-link-alt"></i> Open in New Tab
+                </a>
+                <a id="modal-github-link" href="#" class="btn secondary-btn" target="_blank">
+                    <i class="fab fa-github"></i> View Code
+                </a>
+            </div>
+        </div>
+    </div>
+
     <script src="script.js"></script>
 </body>
-
 
 </html>
