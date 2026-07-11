@@ -10,6 +10,7 @@
     --text-dim: #94a3b8;
     --glass: rgba(255, 255, 255, 0.05);
     --glass-border: rgba(255, 255, 255, 0.1);
+    --nav-bg: rgba(15, 23, 42, 0.8);
     --font-heading: 'Poppins', sans-serif;
     --font-body: 'Inter', sans-serif;
 }
@@ -290,7 +291,7 @@ ul {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background: rgba(15, 23, 42, 0.8);
+    background: var(--nav-bg);
     backdrop-filter: blur(10px);
     z-index: 1000;
     border-bottom: 1px solid var(--glass-border);
@@ -408,6 +409,7 @@ ul {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: top
 }
 
 @keyframes floatImage {
@@ -683,6 +685,93 @@ ul {
     font-size: 0.95rem;
 }
 
+/* --- Statistics Section --- */
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.stat-card {
+    background: var(--glass);
+    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    padding: 35px 25px;
+    border-radius: 20px;
+    text-align: center;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.stat-card::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(56, 189, 248, 0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: 0.5s;
+}
+
+.stat-card:hover::before {
+    opacity: 1;
+}
+
+.stat-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary);
+    box-shadow: 0 10px 40px rgba(56, 189, 248, 0.3);
+}
+
+.stat-icon {
+    font-size: 2.5rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+    display: inline-block;
+    transition: 0.4s;
+    position: relative;
+    z-index: 1;
+}
+
+.stat-card:hover .stat-icon {
+    transform: scale(1.2) rotateY(360deg);
+    color: var(--primary);
+    filter: drop-shadow(0 0 10px var(--primary));
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--text-light);
+    margin: 15px 0;
+    font-family: var(--font-heading);
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    position: relative;
+    z-index: 1;
+    transition: 0.3s;
+}
+
+.stat-card:hover .stat-number {
+    transform: scale(1.1);
+}
+
+.stat-label {
+    color: var(--text-dim);
+    font-size: 1rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    z-index: 1;
+}
+
 /* --- Advanced Workflow Section --- */
 .workflow-wrapper {
     display: grid;
@@ -884,20 +973,36 @@ ul {
     transform: translateX(-50%);
     border-radius: 10px;
     box-shadow: 0 0 15px rgba(56, 189, 248, 0.1);
+    overflow: hidden;
 }
 
-/* Fill the line with gradient */
+/* Animated Fill the line with gradient */
 .timeline-line::after {
     content: '';
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
-    height: 100%;
-    /* You can adjust this % to animate the line filling up */
+    height: 0%;
     background: linear-gradient(to bottom, var(--primary), var(--secondary));
-    opacity: 0.7;
+    opacity: 0.9;
     border-radius: 10px;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.6);
+    transition: height 2s ease-out;
+}
+
+.timeline-line.animate::after {
+    height: 100%;
+}
+
+@keyframes timelineFill {
+    from {
+        height: 0%;
+    }
+
+    to {
+        height: 100%;
+    }
 }
 
 .timeline-item {
@@ -905,6 +1010,18 @@ ul {
     width: 50%;
     padding: 0 40px;
     margin-bottom: 60px;
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.8s ease;
+}
+
+.timeline-item.right-item {
+    transform: translateX(30px);
+}
+
+.timeline-item.timeline-animate {
+    opacity: 1;
+    transform: translateX(0);
 }
 
 /* Left vs Right Alignment */
@@ -920,18 +1037,68 @@ ul {
 
 /* The Content Card */
 .timeline-content {
+    margin-top: 50px;
     background: var(--glass);
+    backdrop-filter: blur(15px);
     padding: 30px;
     border-radius: 20px;
     border: 1px solid var(--glass-border);
     position: relative;
-    transition: 0.4s;
+    transition: all 0.4s ease;
+    overflow: hidden;
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.1), transparent);
+    transition: left 0.5s ease;
+}
+
+.timeline-content:hover::before {
+    left: 100%;
 }
 
 .timeline-content:hover {
-    transform: translateY(-5px);
+    transform: translateY(-8px) scale(1.02);
     border-color: var(--primary);
-    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+    box-shadow: 0 15px 50px rgba(56, 189, 248, 0.3), 0 0 30px rgba(56, 189, 248, 0.1);
+}
+
+/* Timeline Icon Wrapper */
+.timeline-icon-wrapper {
+    position: absolute;
+    top: 5px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+    z-index: 1;
+    transition: all 0.4s ease;
+}
+
+.timeline-icon-wrapper i {
+    font-size: 1.2rem;
+    color: #fff;
+}
+
+.timeline-content:hover .timeline-icon-wrapper {
+    transform: rotate(360deg) scale(1.1);
+    box-shadow: 0 8px 30px rgba(56, 189, 248, 0.6);
+}
+
+.right-item .timeline-icon-wrapper {
+    right: auto;
+    left: 30px;
 }
 
 /* The Glowing Dot on the Line */
@@ -940,14 +1107,29 @@ ul {
     top: 30px;
     right: -10px;
     /* For left items */
-    width: 20px;
-    height: 20px;
+    width: 30px;
+    height: 30px;
     background: var(--primary);
     border-radius: 50%;
-    box-shadow: 0 0 15px var(--primary);
+    box-shadow: 0 0 20px var(--primary), 0 0 40px rgba(56, 189, 248, 0.5);
     z-index: 10;
-    border: 3px solid #0f172a;
-    /* Creates a gap effect */
+    border: 4px solid #0f172a;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.4s ease;
+    animation: dotPulse 2s ease-in-out infinite;
+}
+
+.timeline-dot i {
+    font-size: 0.7rem;
+    color: #0f172a;
+    z-index: 2;
+}
+
+.timeline-dot:hover {
+    transform: scale(1.3);
+    box-shadow: 0 0 30px var(--primary), 0 0 60px rgba(56, 189, 248, 0.8);
 }
 
 .right-item .timeline-dot {
@@ -955,12 +1137,53 @@ ul {
     right: auto;
 }
 
+/* Pulsing Animation for Dot */
+.dot-pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: var(--primary);
+    opacity: 0.6;
+    animation: pulseRing 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes dotPulse {
+
+    0%,
+    100% {
+        box-shadow: 0 0 20px var(--primary), 0 0 40px rgba(56, 189, 248, 0.5);
+    }
+
+    50% {
+        box-shadow: 0 0 30px var(--primary), 0 0 60px rgba(56, 189, 248, 0.8);
+    }
+}
+
+@keyframes pulseRing {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+
+    50% {
+        transform: scale(1.5);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: scale(2);
+        opacity: 0;
+    }
+}
+
 /* Typography & Tags */
 .timeline-date {
     display: inline-block;
     color: var(--primary);
     font-weight: 600;
-    margin-bottom: 10px;
+    margin-top: 25px;
+    /* margin-bottom: 30px; */
     font-size: 0.9rem;
     letter-spacing: 1px;
 }
@@ -972,6 +1195,7 @@ ul {
 }
 
 .company-badge {
+    margin-top: 20px;
     background: rgba(255, 255, 255, 0.1);
     padding: 4px 12px;
     border-radius: 50px;
@@ -981,12 +1205,14 @@ ul {
 }
 
 .timeline-content p {
+    margin-top: 20px;
     color: var(--text-dim);
-    margin: 15px 0 20px;
+    margin: 20px 0 20px;
     line-height: 1.6;
 }
 
 .tech-tags {
+    margin-top: 20px;
     display: flex;
     gap: 10px;
     flex-wrap: wrap;
@@ -1000,11 +1226,53 @@ ul {
 
 .tech-tags span {
     font-size: 0.75rem;
-    padding: 5px 12px;
-    background: rgba(56, 189, 248, 0.05);
+    padding: 6px 14px;
+    background: rgba(56, 189, 248, 0.1);
     color: var(--primary);
-    border: 1px solid rgba(56, 189, 248, 0.2);
+    border: 1px solid rgba(56, 189, 248, 0.3);
     border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    transition: all 0.3s ease;
+}
+
+.tech-tags span i {
+    font-size: 0.8rem;
+}
+
+.tech-tags span:hover {
+    background: rgba(56, 189, 248, 0.2);
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
+}
+
+/* Timeline Milestone Badge */
+.timeline-milestone {
+    margin-top: 20px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(129, 140, 248, 0.1));
+    border: 1px solid rgba(56, 189, 248, 0.3);
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--primary);
+    font-size: 0.85rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.timeline-milestone i {
+    font-size: 1rem;
+}
+
+.timeline-content:hover .timeline-milestone {
+    background: linear-gradient(135deg, rgba(56, 189, 248, 0.2), rgba(129, 140, 248, 0.2));
+    border-color: var(--primary);
+    transform: translateX(5px);
+    box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
 }
 
 
@@ -1155,6 +1423,7 @@ ul {
     overflow: hidden;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
     border: 2px solid var(--glass-border);
+    position: relative;
 }
 
 .showcase-img img {
@@ -1218,6 +1487,384 @@ ul {
 .showcase-btns {
     display: flex;
     gap: 15px;
+    flex-wrap: wrap;
+}
+
+/* Image Overlay for Demo Button */
+.showcase-img {
+    position: relative;
+    overflow: hidden;
+}
+
+.img-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.85);
+    backdrop-filter: blur(5px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: all 0.4s ease;
+}
+
+.showcase-img:hover .img-overlay {
+    opacity: 1;
+}
+
+.demo-btn {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: #fff;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.4);
+}
+
+.demo-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 0 30px rgba(56, 189, 248, 0.6);
+}
+
+.demo-btn i {
+    font-size: 1.2rem;
+}
+
+/* --- Project Demo Modal --- */
+.demo-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10000;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+}
+
+.demo-modal.active {
+    display: flex;
+}
+
+.modal-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    backdrop-filter: blur(10px);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    max-height: 90vh;
+    background: var(--card-bg);
+    backdrop-filter: blur(20px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    z-index: 10001;
+    animation: slideUp 0.4s ease;
+    overflow: hidden;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10002;
+    transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+    background: var(--primary);
+    color: #000;
+    transform: rotate(90deg);
+}
+
+.modal-header {
+    padding: 30px;
+    border-bottom: 1px solid var(--glass-border);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.modal-header h2 {
+    color: var(--text-light);
+    font-size: 1.8rem;
+    margin: 0;
+}
+
+.modal-tabs {
+    display: flex;
+    gap: 10px;
+}
+
+.tab-btn {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--text-dim);
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.9rem;
+}
+
+.tab-btn:hover {
+    background: rgba(56, 189, 248, 0.1);
+    color: var(--primary);
+    border-color: var(--primary);
+}
+
+.tab-btn.active {
+    background: linear-gradient(45deg, var(--primary), var(--secondary));
+    color: #fff;
+    border-color: transparent;
+}
+
+.modal-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 30px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+/* Demo Frame Container */
+.demo-frame-container {
+    position: relative;
+    width: 100%;
+    height: 600px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    background: #000;
+}
+
+#demo-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+}
+
+.iframe-loading {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg-color);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+}
+
+.iframe-loading.hidden {
+    display: none;
+}
+
+.loader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid rgba(56, 189, 248, 0.2);
+    border-top-color: var(--primary);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+.iframe-loading p {
+    color: var(--text-dim);
+    font-size: 1rem;
+}
+
+/* Gallery Container */
+.gallery-container {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.gallery-main {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 1px solid var(--glass-border);
+    background: #000;
+}
+
+#gallery-main-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+.gallery-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    background: rgba(15, 23, 42, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+    border-radius: 50%;
+    color: var(--text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    z-index: 10;
+}
+
+.gallery-nav:hover {
+    background: var(--primary);
+    color: #000;
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn {
+    left: 20px;
+}
+
+.next-btn {
+    right: 20px;
+}
+
+.gallery-thumbnails {
+    display: flex;
+    gap: 15px;
+    overflow-x: auto;
+    padding: 10px 0;
+    scrollbar-width: thin;
+    scrollbar-color: var(--primary) transparent;
+}
+
+.gallery-thumbnails::-webkit-scrollbar {
+    height: 6px;
+}
+
+.gallery-thumbnails::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.gallery-thumbnails::-webkit-scrollbar-thumb {
+    background: var(--primary);
+    border-radius: 3px;
+}
+
+.thumbnail {
+    min-width: 120px;
+    height: 80px;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.thumbnail:hover {
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.thumbnail.active {
+    border-color: var(--primary);
+    opacity: 1;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.modal-footer {
+    padding: 20px 30px;
+    border-top: 1px solid var(--glass-border);
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.modal-footer .btn {
+    flex: 1;
+    min-width: 150px;
+    text-align: center;
+    justify-content: center;
 }
 
 /* --- Contact --- */
@@ -1403,6 +2050,191 @@ footer {
     cursor: pointer;
 }
 
+/* Chat Header Actions Gear */
+.chat-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.chat-header-actions button {
+    background: none;
+    border: none;
+    color: rgba(255, 255, 255, 0.8);
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.chat-header-actions button:hover {
+    color: var(--primary);
+    transform: scale(1.1);
+}
+
+/* API Settings Slider Panel */
+.api-settings-panel {
+    background: #0f172a;
+    border-bottom: 1px solid var(--glass-border);
+    padding: 15px;
+    display: none;
+    /* toggled via JS */
+    flex-direction: column;
+    gap: 8px;
+    animation: slideDownChat 0.3s ease;
+}
+
+@keyframes slideDownChat {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.api-settings-panel h4 {
+    color: var(--text-light);
+    margin: 0;
+    font-size: 0.9rem;
+    font-family: var(--font-heading);
+}
+
+.api-settings-panel p {
+    color: var(--text-dim);
+    font-size: 0.75rem;
+    margin: 4px 0;
+    line-height: 1.3;
+}
+
+.api-settings-panel p a {
+    color: var(--primary);
+    text-decoration: underline;
+}
+
+.api-input-group {
+    display: flex;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.api-input-group input {
+    flex: 1;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    color: #fff;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.api-input-group input:focus {
+    border-color: var(--primary);
+}
+
+.api-input-group button {
+    background: var(--primary);
+    color: #000;
+    border: none;
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-weight: 600;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.api-input-group button:hover {
+    transform: translateY(-2px);
+}
+
+.api-status {
+    font-size: 0.72rem;
+    margin-top: 2px;
+    font-weight: 600;
+}
+
+.api-status.success {
+    color: #22c55e;
+}
+
+.api-status.error {
+    color: #ef4444;
+}
+
+/* Conversational AI Suggestions */
+.chat-suggestions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+    padding: 0 10px;
+    align-self: flex-start;
+}
+
+.suggestion-bubble {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--glass-border);
+    color: var(--primary);
+    padding: 6px 12px;
+    border-radius: 15px;
+    font-size: 0.78rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.suggestion-bubble:hover {
+    background: rgba(56, 189, 248, 0.2);
+    transform: translateY(-2px);
+    border-color: var(--primary);
+    box-shadow: 0 4px 10px rgba(56, 189, 248, 0.2);
+}
+
+/* Typing Indicator Animation */
+.typing-indicator {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    padding: 5px 10px;
+}
+
+.typing-dot {
+    width: 6px;
+    height: 6px;
+    background: var(--text-dim);
+    border-radius: 50%;
+    animation: typingBounce 1.4s infinite ease-in-out both;
+}
+
+.typing-dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.typing-dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes typingBounce {
+
+    0%,
+    80%,
+    100% {
+        transform: scale(0.3);
+        opacity: 0.5;
+    }
+
+    40% {
+        transform: scale(1.0);
+        opacity: 1;
+    }
+}
+
 /* --- Back to Top Button --- */
 #back-to-top {
     position: fixed;
@@ -1450,35 +2282,46 @@ footer {
     /* FIX 1: Prevent Image Distortion */
     .about-image-container img {
         height: auto;
-        aspect-ratio: 1 / 1.3; /* Maintains portrait shape */
+        aspect-ratio: 1 / 1.3;
+        /* Maintains portrait shape */
         object-fit: cover;
     }
-    
+
 
     .about-wrapper {
-        display: flex;             /* Switch from Grid to Flexbox */
-        flex-direction: column;    /* Stack items vertically (Top to Bottom) */
-        align-items: center;       /* Perfect horizontal centering */
+        display: flex;
+        /* Switch from Grid to Flexbox */
+        flex-direction: column;
+        /* Stack items vertically (Top to Bottom) */
+        align-items: center;
+        /* Perfect horizontal centering */
         justify-content: center;
-        text-align: center;        /* Ensures text inside is also centered */
+        text-align: center;
+        /* Ensures text inside is also centered */
         gap: 40px;
     }
+
     .about-card {
-        width: 100%;               /* Ensure the text box fills the width */
-        max-width: 600px;          /* Prevents it from getting too wide on tablets */
-        margin: 0 auto;            /* Centers the box itself */
+        width: 100%;
+        /* Ensure the text box fills the width */
+        max-width: 600px;
+        /* Prevents it from getting too wide on tablets */
+        margin: 0 auto;
+        /* Centers the box itself */
     }
 
     .about-image-container {
         margin-bottom: 40px;
         margin: 0 auto;
     }
+
     a.gh-btn {
         width: 84px;
         font-size: 10px;
         margin-left: -4px;
     }
-    .gh-btn i{
+
+    .gh-btn i {
         font-size: 10px;
         margin-left: -5px;
     }
@@ -1564,7 +2407,7 @@ footer {
         width: 200px;
         height: 200px;
     }
-    
+
 
     /* --- 3. Experience Timeline Fix --- */
     .timeline-container {
@@ -1590,7 +2433,7 @@ footer {
 
     /* FIX 2: Perfect Center Alignment (12px instead of 11px) */
     .timeline-dot {
-        left: 12px; 
+        left: 12px;
         right: auto;
     }
 
@@ -1603,6 +2446,27 @@ footer {
         text-align: left;
     }
 
+    .timeline-icon-wrapper {
+        top: -15px;
+        right: 20px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .timeline-icon-wrapper i {
+        font-size: 1rem;
+    }
+
+    .right-item .timeline-icon-wrapper {
+        left: 20px;
+        right: auto;
+    }
+
+    .timeline-milestone {
+        font-size: 0.75rem;
+        padding: 8px 15px;
+    }
+
     .tech-tags {
         justify-content: flex-start;
     }
@@ -1610,10 +2474,28 @@ footer {
     /* --- 4. GRID CONFIGURATION --- */
     /* By default on tablets, we want 2 columns. 
        Phones will override this in the next media query below. */
-    
+
     .services-grid {
         grid-template-columns: repeat(2, 1fr);
         gap: 15px;
+    }
+
+    /* Statistics Grid - 2 columns on tablets */
+    .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+
+    .stat-card {
+        padding: 25px 20px;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-icon {
+        font-size: 2rem;
     }
 
     .service-card {
@@ -1653,12 +2535,12 @@ footer {
     }
 
     .tech-grid {
-        grid-template-columns: repeat(3, 1fr); 
+        grid-template-columns: repeat(3, 1fr);
         gap: 15px;
     }
 
     .skills-grid {
-        grid-template-columns: 1fr; 
+        grid-template-columns: 1fr;
     }
 
     /* --- 5. Contact Form Fix --- */
@@ -1668,27 +2550,32 @@ footer {
     }
 
     /* --- FIX FOR OVERFLOWING PROJECTS --- */
-    
+
     /* 1. Force the container to stay within screen limits */
     .project-showcase {
         max-width: 100%;
-        overflow: hidden; /* Cuts off anything that still tries to stick out */
+        overflow: hidden;
+        /* Cuts off anything that still tries to stick out */
     }
 
     .showcase-info {
-        width: 100%; /* Ensures text doesn't stretch wider than container */
+        width: 100%;
+        /* Ensures text doesn't stretch wider than container */
     }
 
     /* 2. Allow Tech Icons to wrap to the next line */
     .tech-list {
-        flex-wrap: wrap;       /* <--- CRITICAL FIX */
+        flex-wrap: wrap;
+        /* <--- CRITICAL FIX */
         justify-content: center;
-        gap: 10px;             /* Slightly smaller gap for mobile */
+        gap: 10px;
+        /* Slightly smaller gap for mobile */
     }
 
     /* 3. Allow Buttons to stack or wrap */
     .showcase-btns {
-        flex-wrap: wrap;       /* <--- CRITICAL FIX */
+        flex-wrap: wrap;
+        /* <--- CRITICAL FIX */
         justify-content: center;
         width: 100%;
         gap: 10px;
@@ -1698,7 +2585,8 @@ footer {
     .showcase-btns .btn {
         width: 100%;
         text-align: center;
-        margin-left: 0; /* Reset any margins */
+        margin-left: 0;
+        /* Reset any margins */
     }
 
     /* --- 6. Chat Window Mobile --- */
@@ -1707,49 +2595,123 @@ footer {
         right: 10px;
         bottom: 90px;
     }
+
+    /* --- Modal Responsive --- */
+    .modal-container {
+        max-height: 95vh;
+        margin: 10px;
+    }
+
+    .modal-header {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 1.4rem;
+    }
+
+    .modal-tabs {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .demo-frame-container {
+        height: 400px;
+    }
+
+    .gallery-main {
+        height: 350px;
+    }
+
+    .gallery-nav {
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .prev-btn {
+        left: 10px;
+    }
+
+    .next-btn {
+        right: 10px;
+    }
+
+    .modal-footer {
+        flex-direction: column;
+        padding: 15px 20px;
+    }
+
+    .modal-footer .btn {
+        width: 100%;
+    }
 }
 
 /* FIX 3: MOBILE PHONES (Increased from 380px to 600px) 
    This ensures standard phones (iPhone/Samsung) get 1 column, not 2. */
 @media (max-width: 600px) {
-.hero-btns {
-        display: flex;          /* Activate Flexbox */
-        flex-direction: column; /* Stack buttons top-to-bottom */
-        gap: 15px;              /* Creates the missing vertical gap */
-        width: 100%;            /* Ensure container fits width */
-        max-width: 171px;       /* prevent them from getting too wide */
-        margin: 0 auto;         /* Center the button stack */
+    .hero-btns {
+        display: flex;
+        /* Activate Flexbox */
+        flex-direction: column;
+        /* Stack buttons top-to-bottom */
+        gap: 15px;
+        /* Creates the missing vertical gap */
+        width: 100%;
+        /* Ensure container fits width */
+        max-width: 171px;
+        /* prevent them from getting too wide */
+        margin: 0 auto;
+        /* Center the button stack */
     }
+
     .secondary-btn {
-        margin-left: 0;         /* Remove the desktop side-margin */
+        margin-left: 0;
+        /* Remove the desktop side-margin */
     }
 
     /* Revert to 1 column for readability on all phones */
-    .services-grid, 
-    .workflow-wrapper {
+    .services-grid,
+    .workflow-wrapper,
+    .stats-grid {
         grid-template-columns: 1fr;
         gap: 20px;
     }
 
+    /* Statistics adjustments for mobile */
+    .stat-card {
+        padding: 20px 15px;
+    }
+
+    .stat-number {
+        font-size: 2.2rem;
+    }
+
+    .stat-label {
+        font-size: 0.9rem;
+    }
+
     /* Tech icons can stay 3 columns or go to 2 if you prefer */
     .tech-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        
+        grid-template-columns: repeat(2, 1fr);
+
         width: 100%;
         gap: 15px;
         padding: 0;
         margin-top: 30px;
         justify-content: center;
     }
-    
+
     .section-title {
         font-size: 1.8rem;
     }
-    
+
     .project-showcase {
         padding: 20px;
     }
-    
+
     .showcase-info h3 {
         font-size: 1.5rem;
     }
@@ -1757,5 +2719,256 @@ footer {
     /* Fix font size for very small text */
     .showcase-info p {
         font-size: 0.95rem;
+    }
+
+    /* Modal Mobile Adjustments */
+    .modal-container {
+        margin: 5px;
+        border-radius: 15px;
+    }
+
+    .modal-content {
+        padding: 15px;
+    }
+
+    .demo-frame-container {
+        height: 300px;
+    }
+
+    .gallery-main {
+        height: 250px;
+    }
+
+    .thumbnail {
+        min-width: 80px;
+        height: 60px;
+    }
+}
+
+/* ==========================================================================
+   10. Glassmorphic 3D Card Hover & Magnet Effects
+   ========================================================================= */
+
+/* 3D Tilt Parallax setup */
+.service-card,
+.project-showcase,
+.showcase-img,
+.about-card,
+.tech-item,
+.step-card,
+.timeline-content,
+.stat-card {
+    transform-style: preserve-3d;
+    perspective: 1000px;
+    transition: transform 0.2s cubic-bezier(0.25, 1, 0.5, 1), box-shadow 0.3s ease;
+}
+
+/* Inner elements translation on Z-axis for floating parallax */
+.stat-icon,
+.step-icon,
+.step-number,
+.timeline-icon-wrapper,
+.tech-item i,
+.service-card i,
+.showcase-img img {
+    transform: translateZ(40px);
+    transition: transform 0.3s ease;
+}
+
+.stat-number,
+.step-card h3,
+.timeline-content h3,
+.tech-item span,
+.service-card h3,
+.showcase-info h3,
+.about-text h3 {
+    transform: translateZ(25px);
+    transition: transform 0.3s ease;
+}
+
+.stat-label,
+.step-card p,
+.timeline-content p,
+.service-card p,
+.showcase-info p,
+.showcase-info span,
+.about-text p {
+    transform: translateZ(15px);
+    transition: transform 0.3s ease;
+}
+
+/* Ensure smooth hover shadows when active */
+.stat-card:hover,
+.step-card:hover,
+.timeline-content:hover,
+.tech-item:hover,
+.service-card:hover,
+.about-card:hover,
+.project-showcase:hover {
+    border-color: var(--primary);
+}
+
+/* Magnetic Buttons Transition defaults */
+.primary-btn,
+.secondary-btn,
+.gh-btn,
+.demo-btn,
+#chat-toggle,
+#chat-settings-btn,
+#close-chat,
+#send-btn,
+#save-key-btn,
+.menu-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    will-change: transform;
+}
+
+/* Glassmorphic Dark/Light Mode Switch & Variables */
+:root.light-theme {
+    --bg-color: #f8fafc;
+    --card-bg: rgba(255, 255, 255, 0.7);
+    --text-light: #0f172a;
+    --text-dim: #475569;
+    --glass: rgba(255, 255, 255, 0.65);
+    --glass-border: rgba(15, 23, 42, 0.08);
+    --nav-bg: rgba(248, 250, 252, 0.85);
+}
+
+.theme-divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 5px 0;
+    width: 100%;
+}
+
+.light-theme .theme-divider {
+    border-top: 1px solid rgba(15, 23, 42, 0.15);
+}
+
+.theme-toggle-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--primary);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .theme-toggle-btn {
+    background: rgba(15, 23, 42, 0.05);
+    border: 1px solid rgba(15, 23, 42, 0.15);
+}
+
+.theme-toggle-btn:hover {
+    transform: scale(1.1) rotate(15deg);
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+}
+
+.theme-toggle-icon {
+    font-size: 0.9rem;
+    display: inline-flex;
+    transition: transform 0.5s ease-in-out;
+}
+
+/* Morph spin animation on click */
+.theme-toggle-icon.spin {
+    transform: rotate(360deg) scale(0);
+}
+
+/* Audio Toggle styling */
+.audio-toggle-btn {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    color: var(--primary);
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.light-theme .audio-toggle-btn {
+    background: rgba(15, 23, 42, 0.05);
+    border: 1px solid rgba(15, 23, 42, 0.15);
+}
+
+.audio-toggle-btn:hover {
+    transform: scale(1.1);
+    background: var(--primary);
+    color: #000;
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.45);
+}
+
+.audio-toggle-icon {
+    font-size: 0.9rem;
+    display: inline-flex;
+}
+
+/* Click Ripple effects */
+.click-ripple {
+    position: fixed;
+    width: 20px;
+    height: 20px;
+    border: 2px solid var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    animation: ripple-out 0.6s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes ripple-out {
+    0% {
+        width: 10px;
+        height: 10px;
+        opacity: 1;
+        border-color: var(--primary);
+    }
+
+    100% {
+        width: 100px;
+        height: 100px;
+        opacity: 0;
+        border-color: var(--secondary);
+    }
+}
+
+/* Click Particles */
+.click-particle {
+    position: fixed;
+    width: 6px;
+    height: 6px;
+    background: var(--primary);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    box-shadow: 0 0 8px var(--primary);
+    animation: particle-fly 0.5s cubic-bezier(0.1, 0.8, 0.3, 1) forwards;
+}
+
+@keyframes particle-fly {
+    0% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(0.2);
+        opacity: 0;
     }
 }
